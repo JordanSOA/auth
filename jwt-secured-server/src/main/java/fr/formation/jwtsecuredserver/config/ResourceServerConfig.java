@@ -18,14 +18,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
      * Defines this application as stateless (no HTTP session), and disables
      * HTTP basic auth, CSRF and Spring default login form.
      *
-     * @param the HttpSecurity to configure
+     * @param  http HttpSecurity to configure
      */
     @Override
     public void configure(HttpSecurity http) throws Exception {
 	// Disable CSRF, no need with JWT if not cookie-based.
 	// Disable CORS if API is public, better to enable in general.
 	// Anonymous is enabled by default.
-	http.httpBasic().disable().csrf().disable().cors().disable()
+	http.httpBasic().disable().csrf().disable().cors().and()
 		.sessionManagement()
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 		// "/api/public/**" for anyone even anonymous
