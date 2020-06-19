@@ -10,6 +10,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { GoBackBtnDirective } from './go-back-btn.directive';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     LogoutComponent,
     NotfoundComponent,
     ProfileComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    GoBackBtnDirective
   ],
   imports: [
     BrowserModule,

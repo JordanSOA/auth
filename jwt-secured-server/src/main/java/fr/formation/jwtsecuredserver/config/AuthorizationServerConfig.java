@@ -52,6 +52,9 @@ public class AuthorizationServerConfig
     @Value("${jwt-auth-server.refreshTokenValiditySeconds}")
     private int refreshTokenValiditySeconds;
 
+    @Value("${api-cors.clientId}")
+    private String clientId;
+
     // Defined as Spring bean in WebSecurity
     private final AuthenticationManager authenticationManager;
 
@@ -148,7 +151,7 @@ public class AuthorizationServerConfig
     @Override
     public void configure(ClientDetailsServiceConfigurer clients)
 	    throws Exception {
-	clients.inMemory().withClient("my-client-app")
+	clients.inMemory().withClient(clientId)
 		.secret(passwordEncoder().encode("")).scopes("trusted")
 		.authorizedGrantTypes("password", "refresh_token")
 		.accessTokenValiditySeconds(accessTokenValiditySeconds)
@@ -173,6 +176,7 @@ public class AuthorizationServerConfig
      * @param authentication injected authentication object
      * @return a view of the current authenticated user
      */
+
     @GetMapping("/userInfo")
     public CustomUserInfoDto userInfo() {
 	Long userId = SecurityHelper.getUserId();

@@ -1,14 +1,17 @@
 package fr.formation.jwtsecuredserver.config;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.method.HandlerTypePredicate;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
+
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
 
     /**
      * Defines the "/api" prefix for all {@code @RestController} in the
@@ -26,12 +29,13 @@ public class WebConfig implements WebMvcConfigurer {
 	configurer.addPathPrefix("/api",
 		HandlerTypePredicate.forAnnotation(RestController.class));
     }
+    /*
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
 
-        registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4200")
-                .allowCredentials(true);
+        registry.addMapping("/**");
     }
+     */
+
 }

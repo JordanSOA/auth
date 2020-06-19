@@ -1,1 +1,18 @@
-<p>profile works!</p>
+<div class="profile" *ngIf="user">
+    <h2>Hello <strong>{{user.username}}</strong>, Welcome on your profile </h2>
+    <p *ngIf="user">Firstname: {{user.firstname}}</p>
+    <p *ngIf="user">Lastname: {{user.lastname}}</p>
+</div>
+<div>
+    <button (click)="getHelloPublic()">Test Chemin api/public/hello</button>
+    <p *ngIf="helloMsg">{{helloMsg}}</p>
+</div>
+<div>
+    <button (click)="getMsgPrivateUser()">Test Chemin api/private/user</button>
+    <p *ngIf="privateUserMsg">{{privateUserMsg}}</p>
+</div>
+<div>
+    <button (click)="getMsgPrivateAdmin()">Test Chemin api/private/admin</button>
+    <p *ngIf="privateAdminMsg">{{privateAdminMsg}}</p>
+</div>
+<app-logout></app-logout>

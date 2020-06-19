@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { PrivateGuard } from './private.guard';
 
 
 const routes: Routes = [{
@@ -16,6 +17,7 @@ const routes: Routes = [{
 },{
   path: 'profile',
   component: ProfileComponent
+  //canActivate:[PrivateGuard]
 },{
   path: 'forbidden',
   component: ForbiddenComponent

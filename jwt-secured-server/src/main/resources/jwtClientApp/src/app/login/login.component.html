@@ -1,8 +1,8 @@
 <div>
     <h2>Enter Credentials :</h2>
     <form (submit)="connexion()" >
-        <p>Username : <input type="usename" name="username"  [(ngModel)]="username" required></p>
-        <p>Password: <input type="password" name="password"  [(ngModel)]="password" required></p>
+        <p>Username : <input type="usename" name="username"  autocomplete="username" [(ngModel)]="username" required></p>
+        <p>Password: <input type="password" name="password" autocomplete="current-password" [(ngModel)]="password" required></p>
         <p><input type="submit" value="Connexion"></p>
     </form>
     <p>{{ message }}</p>

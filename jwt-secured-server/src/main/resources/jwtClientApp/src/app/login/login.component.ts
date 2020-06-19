@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit {
       if (isLoggedIn) {
         return this.router.navigate(['/profile']);
       } else {
+        this.username = '';
+        this.password = '';
         this.message = 'E-Mail ou mot de passe invalide';
       }
     })
