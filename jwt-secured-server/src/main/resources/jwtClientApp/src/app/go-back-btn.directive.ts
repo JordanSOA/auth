@@ -1,4 +1,4 @@
-import { Directive, HostListener } from '@angular/core';
+import { Directive, HostListener, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Directive({
@@ -6,11 +6,27 @@ import { Location } from '@angular/common';
 })
 export class GoBackBtnDirective {
 
-  constructor(private location: Location) { }
+  constructor(private ele: ElementRef, private location: Location) {
+  }
 
   @HostListener('click')
-  onClick(){
+  onClick() {
     this.location.back();
   };
 
+  @HostListener('mouseenter') onMouseEnter() {
+    this.highlight('yellow');
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    this.highlight(null);
+    this.ele.nativeElement.style.width = "auto";
+    this.ele.nativeElement.style.height = "auto";
+  }
+
+  private highlight(color: string) {
+    this.ele.nativeElement.style.backgroundColor = color;
+    this.ele.nativeElement.style.width = "75vw";
+    this.ele.nativeElement.style.height = "35vh";
+  }
 }

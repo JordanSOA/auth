@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForbiddenComponent implements OnInit {
 
+  public cheminImage:any = "/assets/img/forbidden.gif";
+
   constructor() { }
 
   ngOnInit(): void {

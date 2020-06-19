@@ -3,6 +3,7 @@ package fr.formation.jwtsecuredserver.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -14,9 +15,6 @@ import org.springframework.security.web.session.SessionManagementFilter;
 @EnableResourceServer
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
-
-	@Value("${api-cors.allowOrigin}")
-	private String allowOrigin;
 
     /**
      * Configures the HTTP security for this application.
@@ -35,9 +33,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 			.csrf().disable()
 			.sessionManagement()
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-			.and().addFilterBefore(corsFilter(), SessionManagementFilter.class)
+			.and()
 		// "/api/public/**" for anyone even anonymous
-		.authorizeRequests().antMatchers("/api/public/**").permitAll()
+		.authorizeRequests()
+			.antMatchers("/api/public/**").permitAll()
+			.antMatchers(HttpMethod.OPTIONS).permitAll()
 		/*
 		 * "/api/userInfo", "/api/private/**" for fully authenticated
 		 * (not anonymous)
@@ -46,9 +46,4 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 			.antMatchers("/api/userInfo", "/api/private/**")
 			.authenticated();
     }
-
-	@Bean
-	CorsFilter corsFilter(){
-		return new CorsFilter(allowOrigin);
-	}
 }

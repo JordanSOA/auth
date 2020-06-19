@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotfoundComponent implements OnInit {
 
+  public cheminImage:any = "/assets/img/500errorTest.gif";
   constructor() { }
 
   ngOnInit(): void {

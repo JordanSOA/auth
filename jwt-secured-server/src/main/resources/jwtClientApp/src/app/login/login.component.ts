@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       } else {
         this.username = '';
         this.password = '';
-        this.message = 'E-Mail ou mot de passe invalide';
+        this.message = 'E-Mail et/ou Mot de Passe Invalide(s)';
       }
     })
   }
